@@ -22,7 +22,9 @@ public class Login extends BasePage {
         click(loginButton);
     }
 
-    public void enter2FA(String code) {
+    public void enter2FA(String code) throws InterruptedException {
         sendKeys(otpInput, code);
+        Thread.sleep(4000);
     }
+
 }

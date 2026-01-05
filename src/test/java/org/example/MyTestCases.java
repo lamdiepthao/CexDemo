@@ -34,12 +34,22 @@ public class MyTestCases extends BaseTest {
         driver.get(LOGIN_URL);
         loginPage.login(USERNAME, PASSWORD);
         loginPage.enter2FA(get2FACode());
-        System.out.println("Login success");
+
+        // --- NOTE MỚI: Đợi URL Dashboard load xong ---
+        sweepingPage.waitForUrlToContain("dashboard");
+        sweepingPage.waitForPageLoad();
+        System.out.println("Login success and Dashboard loaded");
 
         sweepingPage.navigateToCreateSweeping();
+        sweepingPage.waitForUrlToContain("view");
+        sweepingPage.waitForPageLoad();
+        System.out.println("Access view create sweeping success");
+        // --- NOTE MỚI: Gọi hàm điền form (đã có đợi Drawer bên trong) ---
         sweepingPage.fillSweepingForm("1");
-        sweepingPage.submitSweeping(get2FACode());
+        sweepingPage.clickdropdownNetwork(By.xpath("//input[@id='networkCode']"));
+                //click(By.xpath("//input[@id='networkCode']"));
 
+        sweepingPage.submitSweeping(get2FACode());
         System.out.println("Sweeping is created successfully");
     }
 
