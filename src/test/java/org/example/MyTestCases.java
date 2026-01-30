@@ -35,7 +35,7 @@ public class MyTestCases extends BaseTest {
         loginPage.login(USERNAME, PASSWORD);
         loginPage.enter2FA(get2FACode());
 
-        // --- NOTE MỚI: Đợi URL Dashboard load xong ---
+        // --- NOTE: Waiting dashboard loading ---
         sweepingPage.waitForUrlToContain("dashboard");
         sweepingPage.waitForPageLoad();
         System.out.println("Login success and Dashboard loaded");
@@ -44,51 +44,15 @@ public class MyTestCases extends BaseTest {
         sweepingPage.waitForUrlToContain("view");
         sweepingPage.waitForPageLoad();
         System.out.println("Access view create sweeping success");
-        // --- NOTE MỚI: Gọi hàm điền form (đã có đợi Drawer bên trong) ---
-        sweepingPage.fillSweepingForm("1");
-        sweepingPage.clickdropdownNetwork(By.xpath("//input[@id='networkCode']"));
-                //click(By.xpath("//input[@id='networkCode']"));
+        //NOTE: call a specific field as error - FillFormSweeping
+        sweepingPage.clickdropdownNetwork();
+        sweepingPage.clickdropdownCrypto();
+        sweepingPage.clickdropdownWallet();
+        sweepingPage.clickdropdownColdWallet();
+        sweepingPage.clickdropdownSendKey();
 
         sweepingPage.submitSweeping(get2FACode());
         System.out.println("Sweeping is created successfully");
     }
-
-//        // Create sweeping flow:
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//span[normalize-space()='Merchant Wallet']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//a[normalize-space()='Sweeping']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//span[normalize-space()='Create Sweeping']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//span[normalize-space()='Find Address']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//input[@id='networkCode']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//div[contains(text(),'ETHSEP (Test)')]")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//input[@id='assetCode']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='ETHSEP']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//input[@id='walletType']")).click();
-//        Thread.sleep(1000);
-//        driver.findElement(By.xpath("//div[contains(text(),'HD')]")).click();
-//        Thread.sleep(1000);
-//        driver.findElement(By.xpath("//input[@id='coldWallet']")).click();
-//        Thread.sleep(1000);
-//        driver.findElement(By.xpath("//div[contains(text(),'TestETH')]")).click();
-//        Thread.sleep(1000);
-//        driver.findElement(By.xpath("//input[@id='limit']")).sendKeys("1");
-//        Thread.sleep(1000);
-//        driver.findElement(By.xpath("//div[@class='ant-drawer-extra']//span[contains(text(),'Find Address')]")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//span[normalize-space()='Confirm to Sweep']")).click();
-//        Thread.sleep(2000);
-//        driver.findElement(By.xpath("//div[@class='ant-modal-footer']//button[1]")).click();
-//        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//input[@type='text'])[2]")));
-//        driver.findElement(By.xpath("(//input[@type='text'])[1]")).sendKeys(twoFactorCode);
-//        Thread.sleep(3000);
-//        System.out.println("Sweeping is created successfully");
-    }
+}
 

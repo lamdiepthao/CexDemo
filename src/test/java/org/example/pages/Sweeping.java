@@ -43,35 +43,29 @@ public class Sweeping extends BasePage {
         click(btnFindAddress);
         Thread.sleep(3000);
     }
-
-    public void clickdropdownNetwork(By locator){
-
-    }
-
-    public void fillSweepingForm(String limitValue) {
-
-        // Click mở dropdown và chọn
-//        try {
-//            Thread.sleep(3000);
-//        } catch (InterruptedException e) {
-//            throw new RuntimeException(e);
-//        }
+    //FillFormSweeping
+    public void clickdropdownNetwork() throws InterruptedException {
         driver.findElement(dropdownNetwork).click();
-
-
-        click(selectNetwork);
-
-        click(dropdownCrypto);
-        click(selectCrypto);
-
-        // NOTE: walletType thường bị disabled ban đầu, click để kích hoạt
-        click(dropdownWalletType);
-        click(selectWallet);
-
-        click(dropdownColdWallet);
-        click(selectColdWallet);
-
-        sendKeys(inputLimit, limitValue);
+        Thread.sleep(1000);
+        driver.findElement(selectNetwork).click();
+    }
+    public void clickdropdownCrypto() throws InterruptedException {
+        driver.findElement(dropdownCrypto).click();
+        Thread.sleep(1000);
+        driver.findElement(selectCrypto).click();
+    }
+    public void clickdropdownWallet() throws InterruptedException {
+        driver.findElement(dropdownWalletType).click();
+        Thread.sleep(1000);
+        driver.findElement(selectWallet).click();
+    }
+    public void clickdropdownColdWallet() throws InterruptedException {
+        driver.findElement(dropdownColdWallet).click();
+        Thread.sleep(1000);
+        driver.findElement(selectColdWallet).click();
+    }
+    public void clickdropdownSendKey(){
+        driver.findElement(inputLimit).sendKeys("1");
     }
 
     public void submitSweeping(String otpCode) {
